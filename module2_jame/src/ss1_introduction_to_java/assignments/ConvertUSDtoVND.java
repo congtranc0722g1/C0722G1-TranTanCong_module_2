@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class ConvertUSDtoVND {
     public static void main(String[] args) {
-        double vnd = 23000;
+        double rate = 23000;
         double usd;
         Scanner money = new Scanner(System.in);
         System.out.print("Nhập vào số tiền cần chuyển đổi ( USD): ");
         usd = money.nextDouble();
-        double exchange = usd * vnd;
-        System.out.print("Số tiền (VNĐ): " + exchange);
+        double vnd = usd * rate;
+        System.out.print("Số tiền (VNĐ): " + vnd);
     }
 
 }

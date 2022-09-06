@@ -165,7 +165,7 @@ public class ReadNumbersIntoWords {
                     System.out.print("nine hundred ");
                     break;
             }
-            if (tens > 0 && tens < 20){
+            if (tens > 1 && tens < 20){
                 switch (tens){
                     case 1:
                         System.out.print("one");
@@ -253,7 +253,38 @@ public class ReadNumbersIntoWords {
                         System.out.print("ninety ");
                         break;
                 }
+                switch (tens % 10){
+                    case 1:
+                        System.out.println(" one");
+                    case 2:
+                        System.out.print(" two");
+                        break;
+                    case 3:
+                        System.out.print(" three");
+                        break;
+                    case 4:
+                        System.out.print(" four");
+                        break;
+                    case 5:
+                        System.out.print(" five");
+                        break;
+                    case 6:
+                        System.out.print(" six");
+                        break;
+                    case 7:
+                        System.out.print(" seven");
+                        break;
+                    case 8:
+                        System.out.print(" eight");
+                        break;
+                    case 9:
+                        System.out.print(" nine");
+                        break;
+                }
             }
+        }
+        if (num >= 1000){
+            System.out.print("out of ability");
         }
     }
 }

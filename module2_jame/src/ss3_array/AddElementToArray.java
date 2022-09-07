@@ -16,16 +16,13 @@ public class AddElementToArray {
         for (int i = 0; i < arr.length; i++) {
             if(i == location){
                 for (int j = 0; j < location; j++) {
-                    arr1[i] = arr[i];
+                    arr1[j] = arr[j];
                 }
-                for (int j = location; j <= location; j++) {
-                    arr1[i] = add;
-                }
+                arr1[location] = add;
                 for (int j = location + 1; j < arr.length; j++) {
-                    arr1[i] = arr[i +1];
+                    arr1[j] = arr[j - 1];
                 }
             }
-
         }
         for (int i = 0; i < arr1.length; i++) {
             System.out.print(arr1[i] + " ");

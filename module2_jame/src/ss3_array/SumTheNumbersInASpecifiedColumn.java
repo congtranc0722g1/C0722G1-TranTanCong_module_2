@@ -2,7 +2,7 @@ package ss3_array;
 
 import java.util.Scanner;
 
-public class FindTheLargestElementInATwoDimensionalArray {
+public class SumTheNumbersInASpecifiedColumn {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n;
@@ -28,18 +28,17 @@ public class FindTheLargestElementInATwoDimensionalArray {
                 arr[i][j] = Integer.parseInt(scanner.nextLine());
             }
         }
-        int max = arr[0][0];
-        int index1 = 0;
-        int index2 = 0;
+        int location;
+        System.out.print("Nhập vào vị trí cột cần tính tổng: ");
+        location = scanner.nextInt();
+        int sum = 0;
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 1; j < arr[i].length; j++) {
-                if (arr[i][j] >= max){
-                    max = arr[i][j];
-                    index1 = i;
-                    index2 = j;
+            if (i == location){
+                for (int j = 0; j < arr[location].length; j++) {
+                    sum += arr[location][j];
                 }
             }
         }
-        System.out.print("Số lớn nhất là: " + max + " .Tại vị trí: " + index1 + "," + index2);
+        System.out.print("Kết quả là: " + sum);
     }
 }

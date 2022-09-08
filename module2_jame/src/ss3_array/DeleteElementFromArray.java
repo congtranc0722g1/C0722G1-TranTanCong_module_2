@@ -4,9 +4,21 @@ import java.util.Scanner;
 
 public class DeleteElementFromArray {
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6,7,8,9};
-        int delete;
         Scanner scanner = new Scanner(System.in);
+        int n;
+        do {
+            System.out.print("Nhập số phần tử trong mảng: ");
+            n = Integer.parseInt(scanner.nextLine());
+            if(n < 0){
+                System.out.print("Bạn phải nhập số nguên dương, Nhập lại");
+            }
+        }while (n < 0);
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("Nhập vào arr[]" + i + " ");
+            arr[i] = Integer.parseInt(scanner.nextLine());
+        }
+        int delete;
         System.out.print("Nhập vào phần tử cần xóa: ");
         delete = scanner.nextInt();
         int location = -1;

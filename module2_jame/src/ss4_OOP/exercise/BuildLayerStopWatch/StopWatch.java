@@ -10,15 +10,13 @@ public class StopWatch {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-    public long start(){
-        this.startTime = System.currentTimeMillis();
-        return this.startTime;
+    public void start(){
+        this. startTime = System.currentTimeMillis();
     }
-    public long stop(){
+    public void stop(){
         this.endTime = System.currentTimeMillis();
-        return this.endTime;
     }
     public long getElapsedTime(){
-        return stop() - start();
+        return  this.endTime - this.startTime;
     }
 }

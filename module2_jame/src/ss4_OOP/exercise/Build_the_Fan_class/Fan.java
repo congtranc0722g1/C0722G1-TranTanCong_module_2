@@ -8,26 +8,50 @@ public class Fan {
     boolean status = false;
     double radius = 5;
     String color = "blue";
-    public Fan(){
+
+    public Fan() {
 
     }
-    public Fan(int speed, boolean status, double radius,String color){
-        this.speed = speed;
-        this.status = status;
-        this.radius = radius;
-        this.color = color;
-    }
+
     public int getSpeed() {
 
-        return this.speed;
+        return speed;
     }
+
+    public void setSpeed(int speed) {
+
+        this.speed = speed;
+    }
+
     public boolean getStatus() {
-        return this.status;
+        return status;
     }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public double getRadius() {
-        return this.radius;
+        return radius;
     }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
     public String getColor() {
         return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String toString() {
+        if (this.status) {
+            return "Quạt đang bật\nTốc độ: " + this.speed + "\nBán kính : " + this.radius + "\nMàu sắc: " + this.color;
+        }else {
+            return "Quạt đang tắt\nBán kính: "+ this.radius + "\nMàu sắc: " + this.color ;
+        }
     }
 }

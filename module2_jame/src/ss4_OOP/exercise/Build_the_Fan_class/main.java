@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
-        Fan fan1 = new Fan(2, true, 10, "red");
-        System.out.print("Trạng thái: " + fan1.getStatus() + "\nTốc độ: " + fan1.getSpeed() + "\nBán kính : " + fan1.getRadius() + "\nMàu sắc: " + fan1.getColor());
+        Fan fan1 = new Fan();
+        fan1.setStatus(true);
+        fan1.setSpeed(fan1.FAST);
+        fan1.setRadius(10);
+        fan1.setColor("red");
+        System.out.print(fan1);
     }
 }

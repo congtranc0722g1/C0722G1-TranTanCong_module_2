@@ -29,4 +29,11 @@ public class Point {
     public void setXY(float x, float y){
 
     }
+    public float[] getXY(){
+        float Array[] = {getX(), getY()};
+        return Array;
+    }
+    public String toString(){
+        return "(" + getX() + "," + getY() + ")";
+    }
 }

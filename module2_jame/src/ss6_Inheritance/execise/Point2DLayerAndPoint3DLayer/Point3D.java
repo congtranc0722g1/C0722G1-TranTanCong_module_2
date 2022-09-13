@@ -20,6 +20,7 @@ public class Point3D extends Point2D {
         this.z = z;
     }
     public void setXYZ(float x, float y, float z){
+
     }
     public float[] getXYZ(){
         float Array[] =  {getX(), getY(), getZ()};

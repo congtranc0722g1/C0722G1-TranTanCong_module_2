@@ -30,8 +30,7 @@ public class Point {
 
     }
     public float[] getXY(){
-        float Array[] = {getX(), getY()};
-        return Array;
+        return  new float[]{getX(), getY()};
     }
     public String toString(){
         return "(" + getX() + "," + getY() + ")";

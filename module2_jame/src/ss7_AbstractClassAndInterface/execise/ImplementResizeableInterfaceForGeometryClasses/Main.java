@@ -11,7 +11,7 @@ public class Main {
 //        System.out.println(resizeables[1]);
 //        System.out.println(resizeables[2]);
         for (Resizeable resizeable : resizeables) {
-            System.out.println(resizeable.toString());
+            System.out.println(resizeable);
         }
         System.out.println("Sau khi thay đổi:");
         resizeables[0].resize(25);

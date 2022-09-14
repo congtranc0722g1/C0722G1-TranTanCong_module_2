@@ -1,6 +1,8 @@
 package ss7_AbstractClassAndInterface.execise.ImplementColorableInterfaceForGeometryClasses;
 
-public class Square {
+import ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses.Rectangle;
+
+public class Square implements Colorable {
     private double width;
     private String color;
     private boolean filled;
@@ -41,6 +43,12 @@ public class Square {
         return getWidth() * getWidth();
     }
     public void howToColor(){
+    }
 
+    @Override
+    public String toString() {
+        return "Hình vuông" +
+                "\nChiều rộng: " + getWidth() +
+                "\nMàu sắc: " +getColor();
     }
 }

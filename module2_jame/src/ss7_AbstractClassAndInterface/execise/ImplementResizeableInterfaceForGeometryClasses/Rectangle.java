@@ -1,6 +1,6 @@
 package ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses;
 
-public class Rectangle extends Circle {
+public class Rectangle extends Circle implements Resizeable {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -51,13 +51,15 @@ public class Rectangle extends Circle {
 
     @Override
     public String toString() {
-        return "Hình chữ nhật\nChiều rộng: "
-                + getWidth()
-                + "\nChiều dài: "
-                + getLength()
-                + "\nDiện tích: "
-                + getArea()
-                + "\nChu vi: "
-                + getPerimeter();
+        return "Hình chữ nhật" +
+                "\nChiều dài: " + getLength() +
+                "\nChiều rộng: " + getWidth() +
+                "\nDiện tích: " +getArea();
+    }
+
+    @Override
+    public void resize(double percent) {
+        setWidth(getWidth() + getWidth() * percent / 100);
+        setLength(getLength() + getLength() * percent / 100);
     }
 }

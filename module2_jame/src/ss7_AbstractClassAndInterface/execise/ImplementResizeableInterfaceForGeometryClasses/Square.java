@@ -1,6 +1,6 @@
 package ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses;
 
-public class Square extends Rectangle {
+public class Square extends Rectangle implements Resizeable {
     private double with;
     public Square() {
 
@@ -21,11 +21,13 @@ public class Square extends Rectangle {
 
     @Override
     public String toString() {
-        return "Hình vuông\nChiều rộng: "
-                + getWidth()
-                + "\nDiện tích: "
-                + getArea()
-                + "\nChu vi: "
-                + getPerimeter();
+        return "Hình vuông" +
+                "\nChiều rộng: " + getWidth() +
+                "\nDiện tích: " +getArea();
+    }
+
+    @Override
+    public void resize(double percent) {
+        setWidth(getWidth() + getWidth() * percent / 100);
     }
 }

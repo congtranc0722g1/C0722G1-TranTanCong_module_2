@@ -1,10 +1,6 @@
 package ss8_CleanCodeAndRefactoring.execise.Refactoring;
 
 public class TennisGame {
-    String player1Name;
-    String player2Name;
-    int mScore1;
-    int mScore2;
     public static String getScore(String player1Name, String player2Name, int mScore1, int mScore2) {
         String score = "";
         int tempScore = 0;
@@ -42,10 +38,12 @@ public class TennisGame {
             }
         } else {
             for (int i=1; i<3; i++) {
-                if (i==1) tempScore = mScore1;
-                else { score+="-"; tempScore = mScore2;}
-                switch(tempScore)
-                {
+                if (i==1) {
+                    tempScore = mScore1;
+                }
+                else
+                    { score+="-"; tempScore = mScore2;}
+                switch(tempScore) {
                     case 0:
                         score +="Love";
                         break;

@@ -1,25 +1,13 @@
 package ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses;
 
-public class Rectangle extends Circle implements Resizeable {
+public class Rectangle extends Geometry implements Resizeable {
     private double width = 1.0;
     private double length = 1.0;
 
     public Rectangle() {
     }
-    public Rectangle(double width, String color, boolean filled){
-        super(color, filled);
-        this.width = width;
-
-    }
-
-    public Rectangle(double width, double length) {
-        this.width = width;
-        this.length = length;
-    }
 
     public Rectangle(double width, double length, String color, boolean filled) {
-//        super.getColor();
-//        super.isFilled();
         super(color,filled);
         this.width = width;
         this.length = length;
@@ -52,6 +40,7 @@ public class Rectangle extends Circle implements Resizeable {
     @Override
     public String toString() {
         return "Hình chữ nhật" +
+                "\nMàu sắc: " + getColor() +
                 "\nChiều dài: " + getLength() +
                 "\nChiều rộng: " + getWidth() +
                 "\nDiện tích: " +getArea();

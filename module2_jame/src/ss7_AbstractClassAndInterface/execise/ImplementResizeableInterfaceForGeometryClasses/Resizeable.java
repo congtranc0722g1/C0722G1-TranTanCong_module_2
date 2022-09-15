@@ -1,7 +1,5 @@
 package ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses;
 
-import java.awt.Shape;
-
-public interface Resizeable extends Shape {
+public interface Resizeable {
     void resize(double percent);
 }

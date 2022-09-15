@@ -1,13 +1,22 @@
 package ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses;
 
-public class Square extends Rectangle implements Resizeable {
-    private double with;
+public class Square extends Geometry implements Resizeable {
+    private double width;
     public Square() {
 
     }
 
     public Square(double width, String color, boolean filled) {
-        super(width, color, filled);
+        super(color, filled);
+        this.width = width;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
     }
 
     public double getArea() {
@@ -22,6 +31,7 @@ public class Square extends Rectangle implements Resizeable {
     @Override
     public String toString() {
         return "Hình vuông" +
+                "\nMàu sắc: " + getColor() +
                 "\nChiều rộng: " + getWidth() +
                 "\nDiện tích: " +getArea();
     }

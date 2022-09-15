@@ -5,7 +5,7 @@ public class Main {
         Resizeable[] resizeables = new Resizeable[3];
         resizeables[0] = new Circle(4,"blue", true);
         resizeables[1] = new Rectangle(5,4,"red",false);
-        resizeables[2] = new Square(5, "black",true);
+        resizeables[2] = new Square(5,"pink", true);
         System.out.println("Trước khi thay đổi:");
 //        System.out.println(resizeables[0]);
 //        System.out.println(resizeables[1]);

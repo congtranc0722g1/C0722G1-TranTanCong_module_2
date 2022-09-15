@@ -41,7 +41,10 @@ public class Square implements Colorable {
 
         return getWidth() * getWidth();
     }
-    public void howToColor(){
+
+    @Override
+    public String howToColor(){
+        return "Tô màu tất cả các mặt";
     }
 
     @Override

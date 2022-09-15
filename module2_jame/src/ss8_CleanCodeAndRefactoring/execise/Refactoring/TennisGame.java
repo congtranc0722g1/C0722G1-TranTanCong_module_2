@@ -4,10 +4,8 @@ public class TennisGame {
     public static String getScore(String player1Name, String player2Name, int mScore1, int mScore2) {
         String score = "";
         int tempScore = 0;
-        if (mScore1 == mScore2)
-        {
-            switch(mScore1)
-            {
+        if (mScore1 == mScore2) {
+            switch(mScore1) {
                 case 0:
                     score = "Love-All";
                     break;

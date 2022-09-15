@@ -8,7 +8,7 @@ public class Main {
         for (Colorable colorable : colorables) {
             System.out.println(colorable);
             if (colorable instanceof Square) {
-                colorable.howToColor();
+                System.out.println(colorable.howToColor());
             }
         }
     }

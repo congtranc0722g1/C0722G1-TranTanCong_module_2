@@ -22,7 +22,7 @@ public class Main {
             double randomDouble = Math.random();
             randomDouble = randomDouble * 100 + 1;
             resizable.resize(randomDouble);
-            System.out.println(resizable + "\nTỉ lệ thay đổi: " + randomDouble);
+            System.out.println(resizable + "\nTỉ lệ thay đổi: " + randomDouble + "%");
         }
     }
 }

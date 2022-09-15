@@ -5,10 +5,11 @@ public class Square implements Colorable {
     private double width;
     private String color;
     private boolean filled;
-    public Square(){
 
+    public Square() {
     }
-    public Square(double width, String color, boolean filled){
+
+    public Square(double width, String color, boolean filled) {
         this.width = width;
         this.color = color;
         this.filled = filled;
@@ -37,13 +38,14 @@ public class Square implements Colorable {
     public void setFilled(boolean filled) {
         this.filled = filled;
     }
+
     public double getArea() {
 
         return getWidth() * getWidth();
     }
 
     @Override
-    public String howToColor(){
+    public String howToColor() {
         return "Tô màu tất cả các mặt";
     }
 
@@ -51,6 +53,7 @@ public class Square implements Colorable {
     public String toString() {
         return "Hình vuông" +
                 "\nChiều rộng: " + getWidth() +
-                "\nMàu sắc: " +getColor();
+                "\nMàu sắc: " + getColor() +
+                "\nDiện tích: " + getArea();
     }
 }

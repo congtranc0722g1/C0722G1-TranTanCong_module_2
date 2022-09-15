@@ -1,6 +1,6 @@
 package ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses;
 
-public abstract class Geometry {
+public abstract class Geometry implements Resizeable {
     private String color = "green";
     private boolean filled = true;
     public Geometry(){
@@ -25,5 +25,10 @@ public abstract class Geometry {
 
     public void setFilled(boolean filled) {
         this.filled = filled;
+    }
+
+    @Override
+    public void resize(double percent) {
+
     }
 }

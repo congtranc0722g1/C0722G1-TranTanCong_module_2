@@ -1,6 +1,5 @@
 package ss7_AbstractClassAndInterface.execise.ImplementColorableInterfaceForGeometryClasses;
 
-import ss7_AbstractClassAndInterface.execise.ImplementResizeableInterfaceForGeometryClasses.Rectangle;
 
 public class Square implements Colorable {
     private double width;

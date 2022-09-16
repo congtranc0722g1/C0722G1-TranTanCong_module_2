@@ -50,13 +50,14 @@ public class MyListTest {
         studentMyList.add(student7);
         studentMyList.add(student8, 6);
         studentMyList.size();
-        for (int i = 0; i < studentMyList.size(); i++) {
-            Student student = (Student) studentMyList.elements[i];
-            System.out.println(student.getId());
-            System.out.println(student.getName());
-            System.out.println(studentMyList.size());
-            System.out.println(studentMyList.get(2).getName());
+//        for (int i = 0; i < studentMyList.size(); i++) {
+//            Student student = (Student) studentMyList.elements[i];
+//            System.out.println(student.getId());
+//            System.out.println(student.getName());
+//            System.out.println(studentMyList.size());
+//            System.out.println(studentMyList.get(2).getName());
+            System.out.println(studentMyList.contains(student3));
         }
     }
-}
+//}
 

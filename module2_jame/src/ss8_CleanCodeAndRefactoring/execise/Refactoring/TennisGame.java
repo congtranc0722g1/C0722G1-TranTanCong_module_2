@@ -2,63 +2,93 @@ package ss8_CleanCodeAndRefactoring.execise.Refactoring;
 
 public class TennisGame {
 
-    public static String getScore(String player1Name, String player2Name, int mScore1, int mScore2) {
+    public static String getScore(String player1Name, String player2Name, int playerScore1, int playerScore2) {
         String score = "";
-        int tempScore = 0;
+//        int TEMP_SCORE = 0;
+        final int ZERO_SCORE = 0;
+        final int ONE_POINTS = 1;
+        final int TWO_POINTS = 2;
+        final int THREE_POINTS = 3;
 
-        if (mScore1 == mScore2) {
-            switch(mScore1) {
-                case 0:
+        if (playerScore1 == playerScore2) {
+            switch (playerScore1) {
+                case ZERO_SCORE:
                     score = "Love-All";
                     break;
-                case 1:
+                case ONE_POINTS:
                     score = "Fifteen-All";
                     break;
-                case 2:
+                case TWO_POINTS:
                     score = "Thirty-All";
                     break;
-                case 3:
+                case THREE_POINTS:
                     score = "Forty-All";
                     break;
                 default:
                     score = "Deuce";
                     break;
-
             }
         }
-        else if (mScore1 >= 4 || mScore2 >= 4) {
-            int minusResult = mScore1 - mScore2;
-            if (minusResult == 1){
-                score = "Advantage player1";
-            } else if (minusResult ==-1){
-                score = "Advantage player2";
-            } else if (minusResult>=2){
-                score = "Win for player1";
-            } else{
-                score = "Win for player2";
-            }
-        } else {
-            for (int i=1; i<3; i++) {
-                if (i==1) {
-                    tempScore = mScore1;
+        return score;
+    }
+
+
+
+    private static String winner(int playerScore1, int playerScore2) {
+        boolean isPlayerScore1 = playerScore1 >= 4;
+        boolean isPlayerScore2 = playerScore2 >= 4;
+        String score = "";
+        if (isPlayerScore1 || isPlayerScore2) {
+
+            int minusResult = playerScore1 - playerScore2;
+            boolean isMinusResult1 = minusResult == 1;
+            boolean isMinusResult2 = minusResult == -1;
+            boolean isMinusResult3 = minusResult >= 2;
+
+            if (isMinusResult1) score = "Advantage player1";
+            else if (isMinusResult2) score = "Advantage player2";
+            else if (isMinusResult3) score = "Win for player1";
+            else score = "Win for player2";
+        }
+        return score;
+    }
+
+
+
+    private static String currentScore(int playerScore1, int playerScore2) {
+        boolean isPlayerScore1 = playerScore1 >= 4;
+        boolean isPlayerScore2 = playerScore2 >= 4;
+
+        String score = "";
+        int tempScore = 0;
+        final int ZERO_SCORE = 0;
+        final int ONE_POINTS = 1;
+        final int TWO_POINTS = 2;
+        final int THREE_POINTS = 3;
+
+        if (isPlayerScore1 != isPlayerScore2) {
+            for (int i = 1; i < 3; i++) {
+                if (i == 1) tempScore = playerScore1;
+                else {
+                    score += "-";
+                    tempScore = playerScore2;
                 }
-                else
-                    { score+="-"; tempScore = mScore2;}
-                switch(tempScore) {
-                    case 0:
-                        score +="Love";
+                switch (tempScore) {
+                    case ZERO_SCORE:
+                        score += "Love";
                         break;
-                    case 1:
-                        score +="Fifteen";
+                    case ONE_POINTS:
+                        score += "Fifteen";
                         break;
-                    case 2:
-                        score +="Thirty";
+                    case TWO_POINTS:
+                        score += "Thirty";
                         break;
-                    case 3:
-                        score +="Forty";
+                    case THREE_POINTS:
+                        score += "Forty";
                         break;
                 }
             }
+
         }
         return score;
     }

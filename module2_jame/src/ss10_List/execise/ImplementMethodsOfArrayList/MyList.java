@@ -93,7 +93,4 @@ public class MyList<E> {
         return v;
     }
 
-    public E remove(int index){
-        
-    }
 }

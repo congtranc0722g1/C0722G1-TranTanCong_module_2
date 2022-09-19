@@ -9,11 +9,6 @@ public class StringStack {
         System.out.print("Nhập vào một chuỗi: ");
         String str = scanner.nextLine();
 
-
-        String[] arr = str.split("");
-
-        System.out.print(arr);
-
         Stack<String> stack = new Stack();
 
         for (int i = 0; i < str.length(); i++) {

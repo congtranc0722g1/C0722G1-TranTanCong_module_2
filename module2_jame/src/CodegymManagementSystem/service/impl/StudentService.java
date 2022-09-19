@@ -53,7 +53,7 @@ public class StudentService implements IStudentService {
         String code = scanner.nextLine();
         System.out.print("Mời bạn nhập tên học sinh: ");
         String name = scanner.nextLine();
-        System.out.print("Mời bạn nhập giới tính học sinh (1.Nam. 2.Nữ: ");
+        System.out.print("Mời bạn nhập giới tính học sinh (1.Nam. 2.Nữ: )");
         int tempGender = Integer.parseInt(scanner.nextLine());
         String gender;
         if(tempGender == 1) {

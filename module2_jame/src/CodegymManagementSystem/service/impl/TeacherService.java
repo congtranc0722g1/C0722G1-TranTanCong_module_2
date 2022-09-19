@@ -52,7 +52,7 @@ public class TeacherService implements ITeacherService {
         String code = scanner.nextLine();
         System.out.print("Mời bạn nhập tên giáo viên: ");
         String name = scanner.nextLine();
-        System.out.print("Mời bạn nhập giới tính giáo viên (1.Nam. 2.Nữ: ");
+        System.out.print("Mời bạn nhập giới tính giáo viên (1.Nam. 2.Nữ: )");
         int tempGender = Integer.parseInt(scanner.nextLine());
         String gender;
         if(tempGender == 1) {

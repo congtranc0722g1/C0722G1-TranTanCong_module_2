@@ -1,6 +1,5 @@
 package ss11_dsa_stack_queue.execise.convert_from_decimal_to_binary;
 
-import java.lang.reflect.Array;
 import java.util.Stack;
 
 public class DecimalToBinaryExample {
@@ -13,7 +12,7 @@ public class DecimalToBinaryExample {
         Stack<Integer> stack= new Stack<>();
         while (this.num != 0){
             int n = this.num % 2;
-            System.out.print(stack.push(n));
+            stack.push(n);
             this.num /= 2;
         }
         System.out.print("\n");

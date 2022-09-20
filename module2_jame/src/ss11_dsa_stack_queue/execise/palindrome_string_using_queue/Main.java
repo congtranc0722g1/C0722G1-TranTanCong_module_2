@@ -7,7 +7,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Nhập biểu thức: ");
         String str = scanner.nextLine();
-        String[] arrStr = str.split(" ");
+        String[] arrStr = str.split("");
         Palindrome palindrome = new Palindrome(arrStr);
         palindrome.checkPalindrome();
     }

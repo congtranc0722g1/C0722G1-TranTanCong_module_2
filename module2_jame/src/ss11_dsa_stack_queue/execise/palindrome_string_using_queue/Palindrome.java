@@ -6,7 +6,8 @@ import java.util.Stack;
 
 public class Palindrome {
     String[] arr;
-    public Palindrome (String[] arr){
+
+    public Palindrome(String[] arr) {
         this.arr = arr;
     }
 
@@ -17,20 +18,27 @@ public class Palindrome {
     public void setArr(String[] arr) {
         this.arr = arr;
     }
-    public boolean checkPalindrome(){
+
+    public void checkPalindrome() {
         Stack<String> stack = new Stack<>();
         Queue<String> queue = new LinkedList<>();
         for (int i = 0; i < getArr().length; i++) {
             stack.push(getArr()[i]);
             queue.add(getArr()[i]);
         }
+        boolean check = false;
         for (int i = 0; i < getArr().length; i++) {
-            stack.pop();
-            queue.poll();
+            if(stack.pop().equals(queue.poll())){
+                check = true;
+            }
+            else {
+                check =false;
+            }
         }
-        if(stack.pop().equals(queue.poll())){
-            return true;
+        if (check){
+            System.out.print("Đây là chuỗi Palindrome");
+        } else {
+            System.out.print("Đây không phải chuỗi Palindrome");
         }
-        return false;
     }
 }

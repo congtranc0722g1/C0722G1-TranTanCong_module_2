@@ -29,7 +29,7 @@ public class ProductService implements IProductService {
                 String name2 = scanner.nextLine();
                 productList.get(i).setName(name2);
                 System.out.println("Nhập giá sản phẩm mới: ");
-                double price2 = Double.parseDouble(scanner.nextLine());
+                int price2 = Integer.parseInt(scanner.nextLine());
                 productList.get(i).setPrice(price2);
                 System.out.println("Nhập ngày nhập sản phẩm mới: ");
                 String day2 = scanner.nextLine();
@@ -92,7 +92,19 @@ public class ProductService implements IProductService {
             if (choice1 != 1 && choice1 != 2){
                 System.out.println("Chỉ được nhập 1 hoặc 2");
             } else if (choice1 == 1){
-                Product product = new Product();
+                productList.sort(new Comparator<Product>() {
+                    @Override
+                    public int compare(Product o1, Product o2) {
+                        return o2.getPrice() - o1.getPrice();
+                    }
+                });
+            } else {
+                productList.sort(new Comparator<Product>() {
+                    @Override
+                    public int compare(Product o1, Product o2) {
+                        return o1.getPrice() - o2.getPrice();
+                    }
+                });
             }
         } while (choice1 != 1 && choice1 != 2);
         }
@@ -103,7 +115,7 @@ public class ProductService implements IProductService {
         System.out.print("Nhập tên sản phẩm: ");
         String name = scanner.nextLine();
         System.out.print("Nhập giá sản phẩm: ");
-        double price = Double.parseDouble(scanner.nextLine());
+        int price = Integer.parseInt(scanner.nextLine());
         System.out.print("Ngày nhập sản phẩm: ");
         String day = scanner.nextLine();
         Product product = new Product (id, name, price, day);

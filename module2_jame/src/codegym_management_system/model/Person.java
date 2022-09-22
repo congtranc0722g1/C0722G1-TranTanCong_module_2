@@ -40,10 +40,8 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "code='" + getCode() + '\'' +
-                ", name='" + getName() + '\'' +
-                ", gender=" + getGender() +
-                '}';
+        return "Mã: " + getCode() + ",\t"
+                + "Tên: " + getName() + ",\t"
+                + "Giới tính: " + getGender() + ',';
     }
 }

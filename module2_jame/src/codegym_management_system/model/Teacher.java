@@ -25,8 +25,7 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        return "Teacher{" +
-                "specialize = " + getSpecialize() +
-                "} " + super.toString();
+        return super.toString() + " | Giáo viên: " +
+                "Trình độ: " + getSpecialize();
     }
 }

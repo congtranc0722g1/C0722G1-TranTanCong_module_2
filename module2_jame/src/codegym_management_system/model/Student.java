@@ -37,9 +37,8 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "nameClass='" + getNameClass() + '\'' +
-                ", score=" + getScore() +
-                "} " + super.toString();
+        return super.toString() + " | Học sinh: " +
+                "Tên lớp: " + getNameClass() + ",\t" +
+                "Điểm: " + getScore();
     }
 }

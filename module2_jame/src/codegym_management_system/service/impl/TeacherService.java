@@ -45,6 +45,18 @@ public class TeacherService implements ITeacherService {
             System.out.println("Không tìm thấy đối tượng cần xóa.");
         }
     }
+
+    @Override
+    public void searchTeacher() {
+        System.out.print("Mời bạn nhập tên giáo viên cần xem thông tin: ");
+        String name = scanner.nextLine();
+        for (int i = 0; i < teacherList.size(); i++) {
+            if (teacherList.get(i).getName().contains(name)){
+                System.out.println(teacherList.get(i));
+            }
+        }
+    }
+
     public Teacher infoTeacher(){
         System.out.print("Mời bạn nhập mã giáo viên: ");
         String code = scanner.nextLine();

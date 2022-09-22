@@ -1,5 +1,6 @@
 package ss12_java_collection_framework.arraylist_linkedlist.service.impl;
 
+import ss12_java_collection_framework.arraylist_linkedlist.controller.ProductController;
 import ss12_java_collection_framework.arraylist_linkedlist.model.Product;
 import ss12_java_collection_framework.arraylist_linkedlist.service.IProductService;
 

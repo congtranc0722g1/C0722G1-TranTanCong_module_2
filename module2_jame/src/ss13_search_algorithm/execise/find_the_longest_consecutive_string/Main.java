@@ -12,7 +12,7 @@ public class Main {
         System.out.print("Nhập vào chuỗi: ");
         String string = input.nextLine();
 
-        for (int i = 0; i < string.length(); i++) { 		//1 Vòng lặp
+        for (int i = 0; i < string.length(); i++) {
             if (list.size() > 1 && string.charAt(i) <= list.getLast() &&
                     list.contains(string.charAt(i))) {
                 list.clear();

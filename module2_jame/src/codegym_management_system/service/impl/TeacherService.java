@@ -61,18 +61,19 @@ public class TeacherService implements ITeacherService {
     @Override
     public void sortTeacher() {
         boolean isSwap = true;
-        for (int i = 0; i < teacherList.size() - 1; i++) {
+        for (int i = 0; i < teacherList.size() -1; i++) {
             isSwap = false;
-            for (int j = 0; j < teacherList.size() - 1 - i; j++) {
-                if (teacherList.get(j).getName().compareTo(teacherList.get(j + 1).getName()) > 0) {
+            for (int j = i + 1; j < teacherList.size() - i -1; j++) {
+                if (teacherList.get(j).compareTo(teacherList.get(j+1) ) > 0) {
                     isSwap = true;
-                    Teacher temp = teacherList.get(j + 1);
-                    teacherList.set(j + 1, teacherList.get(j));
+                    Teacher temp = teacherList.get(j+1);
+                    teacherList.set(j+1, teacherList.get(j));
                     teacherList.set(j, temp);
                 }
+
             }
+
         }
-        System.out.println("Sắp xếp thành công");
         for (Teacher teacher : teacherList){
             System.out.println(teacher);
         }

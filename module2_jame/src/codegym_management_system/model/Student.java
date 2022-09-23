@@ -1,6 +1,6 @@
 package codegym_management_system.model;
 
-public class Student extends Person {
+public class Student extends Person implements Comparable<Student> {
     private String nameClass;
     //wrapper class
     private double score;
@@ -34,11 +34,18 @@ public class Student extends Person {
     public void setScore(double score) {
         this.score = score;
     }
-
     @Override
     public String toString() {
         return super.toString() + " | Học sinh: " +
                 "Tên lớp: " + getNameClass() + ",\t" +
                 "Điểm: " + getScore();
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        if (this.getName().compareTo(o.getName()) != 0){
+            return this.getName().compareTo(o.getName());
+        }
+        return this.getCode().compareTo(o.getCode());
     }
 }

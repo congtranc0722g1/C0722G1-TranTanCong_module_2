@@ -1,6 +1,6 @@
 package codegym_management_system.model;
 
-public class Teacher extends Person {
+public class Teacher extends Person implements Comparable<Teacher>{
     String specialize;
 
     public Teacher() {
@@ -27,5 +27,13 @@ public class Teacher extends Person {
     public String toString() {
         return super.toString() + " | Giáo viên: " +
                 "Trình độ: " + getSpecialize();
+    }
+
+    @Override
+    public int compareTo(Teacher o) {
+        if (this.getName().compareTo(o.getName()) != 0) {
+            return this.getName().compareTo(o.getName());
+        }
+        return this.getCode().compareTo(o.getCode());
     }
 }

@@ -1,5 +1,6 @@
 package codegym_management_system.service.impl;
 
+import codegym_management_system.model.Student;
 import codegym_management_system.model.Teacher;
 import codegym_management_system.service.ITeacherService;
 
@@ -54,6 +55,26 @@ public class TeacherService implements ITeacherService {
             if (teacherList.get(i).getName().contains(name)){
                 System.out.println(teacherList.get(i));
             }
+        }
+    }
+
+    @Override
+    public void sortTeacher() {
+        boolean isSwap = true;
+        for (int i = 0; i < teacherList.size() - 1; i++) {
+            isSwap = false;
+            for (int j = 0; j < teacherList.size() - 1 - i; j++) {
+                if (teacherList.get(j).getName().compareTo(teacherList.get(j + 1).getName()) > 0) {
+                    isSwap = true;
+                    Teacher temp = teacherList.get(j + 1);
+                    teacherList.set(j + 1, teacherList.get(j));
+                    teacherList.set(j, temp);
+                }
+            }
+        }
+        System.out.println("Sắp xếp thành công");
+        for (Teacher teacher : teacherList){
+            System.out.println(teacher);
         }
     }
 

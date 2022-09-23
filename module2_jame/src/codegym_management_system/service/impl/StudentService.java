@@ -59,6 +59,33 @@ public class StudentService implements IStudentService {
         }
     }
 
+    @Override
+    public void sortStudent() {
+        boolean isSwap = true;
+        for (int i = 0; i < studentList.size() - 1; i++) {
+            isSwap = false;
+            for (int j = 0; j < studentList.size() - 1 - i; j++) {
+                if (studentList.get(j).getName().compareTo(studentList.get(j + 1).getName()) > 0){
+                    isSwap = true;
+                    Student temp = studentList.get(j + 1);
+                    studentList.set(j + 1, studentList.get(j));
+                    studentList.set(j, temp);
+                }
+//                else if (studentList.get(j).getName().equals(studentList.get(j + 1).getName())){
+//                    if (studentList.get(j).getCode().compareTo(studentList.get(j + 1).getCode()) > 0)
+//                    isSwap = true;
+//                    Student temp =studentList.get(j + 1);
+//                    studentList.set(j + 1, studentList.get(j));
+//                    studentList.set(j, temp);
+//                }
+            }
+        }
+        System.out.println("Sắp xếp thành công");
+        for(Student student: studentList) {
+            System.out.println(student);
+        }
+    }
+
     public Student infoStudent() {
         System.out.print("Mời bạn nhập mã học sinh: ");
         String code = scanner.nextLine();

@@ -2,17 +2,18 @@ package codegym_management_system.service.impl;
 
 import codegym_management_system.model.Student;
 import codegym_management_system.service.IStudentService;
+import codegym_management_system.utils.StudentException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class StudentService implements IStudentService {
+public class StudentService implements IStudentService{
     private static Scanner scanner = new Scanner(System.in);
     private static List<Student> studentList = new ArrayList<>();
 
     @Override
-    public void addStudent() {
+    public void addStudent() throws StudentException {
         Student student = this.infoStudent();
 
         studentList.add(student);
@@ -78,7 +79,8 @@ public class StudentService implements IStudentService {
         }
     }
 
-    public Student infoStudent() {
+    public Student infoStudent() throws StudentException {
+        double score;
         System.out.print("Mời bạn nhập mã học sinh: ");
         String code = scanner.nextLine();
         System.out.print("Mời bạn nhập tên học sinh: ");
@@ -95,8 +97,15 @@ public class StudentService implements IStudentService {
         }
         System.out.print("Mời bạn nhập tên lớp: ");
         String nameClass = scanner.nextLine();
-        System.out.print("Mời bạn nhập điểm của học sinh: ");
-        double score = Double.parseDouble(scanner.nextLine());
+        while (true){
+            try {
+                System.out.print("Mời bạn nhập điểm của học sinh: ");
+                score = Double.parseDouble(scanner.nextLine());
+                break;
+            }catch (NumberFormatException e){
+                System.out.println("Điểm phải là một số");
+            }
+        }
         Student student = new Student(code,name,gender,nameClass,score);
         return student;
     }

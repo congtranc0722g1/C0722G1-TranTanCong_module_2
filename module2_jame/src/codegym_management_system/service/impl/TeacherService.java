@@ -3,6 +3,7 @@ package codegym_management_system.service.impl;
 import codegym_management_system.model.Student;
 import codegym_management_system.model.Teacher;
 import codegym_management_system.service.ITeacherService;
+import codegym_management_system.utils.StudentException;
 import codegym_management_system.utils.TeacherException;
 
 import java.util.ArrayList;
@@ -91,29 +92,31 @@ public class TeacherService implements ITeacherService {
                 System.out.print("Mời bạn nhập tên giáo viên: ");
                 name = scanner.nextLine();
                 for (int i = 0; i < name.length(); i++) {
-                    if (name.charAt(i) <= '9' && name.charAt(i) >= '0') {
-                        throw new TeacherException("không được chứa ký tự số trong tên");
+                    if (name.charAt(i) <= '9' && name.charAt(i) >= '0'){
+                        throw new TeacherException("Tên không được chứa số");
                     }
-                    break;
+
                 }
+                break;
             } catch (TeacherException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-            System.out.print("Mời bạn nhập giới tính giáo viên (1.Nam. 2.Nữ: )");
-            int tempGender = Integer.parseInt(scanner.nextLine());
-            String gender;
-            if (tempGender == 1) {
-                gender = "Nam";
-            } else if (tempGender == 2) {
-                gender = "Nữ";
-            } else {
-                gender = null;
-            }
+        System.out.print("Mời bạn nhập giới tính giáo viên (1.Nam. 2.Nữ: )");
+        int tempGender = Integer.parseInt(scanner.nextLine());
+        String gender;
+        if(tempGender == 1) {
+            gender = "Nam";
+        } else if(tempGender == 2) {
+            gender = "Nữ";
+        } else {
+            gender = null;
+        }
             System.out.print("Mời bạn trình dộ giáo viên: ");
             String specialize = scanner.nextLine();
-            Teacher teacher = new Teacher(code, name , gender, specialize);
+
+            Teacher teacher = new Teacher(code, name, gender, specialize);
             return teacher;
-        }
     }
+}

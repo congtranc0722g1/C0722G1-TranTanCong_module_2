@@ -1,13 +1,14 @@
 package codegym_management_system.controller;
 
 import codegym_management_system.utils.StudentException;
+import codegym_management_system.utils.TeacherException;
 
 import java.util.Scanner;
 
 public class CodeGymController {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void menuCodegym() throws StudentException {
+    public static void menuCodegym() throws TeacherException, StudentException {
         while (true){
             System.out.println("-----------------------------------------------------------");
             System.out.println("Chào mừng bạn đến với chương trình quản lý CodeGym");

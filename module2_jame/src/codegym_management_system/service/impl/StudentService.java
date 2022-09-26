@@ -81,10 +81,26 @@ public class StudentService implements IStudentService{
 
     public Student infoStudent() throws StudentException {
         double score;
+        String name;
         System.out.print("Mời bạn nhập mã học sinh: ");
         String code = scanner.nextLine();
-        System.out.print("Mời bạn nhập tên học sinh: ");
-        String name = scanner.nextLine();
+
+        while (true) {
+            try {
+                System.out.print("Mời bạn nhập tên học sinh: ");
+                name = scanner.nextLine();
+                for (int i = 0; i < name.length(); i++) {
+                    if (name.charAt(i) <= '9' && name.charAt(i) >= '0'){
+                        throw new StudentException("Tên không được chứa số");
+                    }
+
+                }
+                break;
+            } catch (StudentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         System.out.print("Mời bạn nhập giới tính học sinh (1.Nam. 2.Nữ: )");
         int tempGender = Integer.parseInt(scanner.nextLine());
         String gender;

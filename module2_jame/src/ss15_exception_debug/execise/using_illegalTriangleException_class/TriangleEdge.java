@@ -1,5 +1,7 @@
 package ss15_exception_debug.execise.using_illegalTriangleException_class;
 
+import sun.misc.Cleaner;
+
 import java.util.Scanner;
 
 public class TriangleEdge {
@@ -28,7 +30,7 @@ public class TriangleEdge {
                 System.out.print("Nhập vào cạnh b: ");
                 b = Integer.parseInt(scanner.nextLine());
                 if (b <= 0) {
-                    throw new IllegalTriangleException("Định dạnh cạnh không hợp lệ");
+                    throw new IllegalTriangleException("Định dạng cạnh không hợp lệ");
                 }
                 break;
             } catch (IllegalTriangleException e) {
@@ -43,7 +45,7 @@ public class TriangleEdge {
                 System.out.print("Nhập vào cạnh c: ");
                 c = Integer.parseInt(scanner.nextLine());
                 if (c <= 0) {
-                    throw new IllegalTriangleException("Định dạnh cạnh không hợp lệ");
+                    throw new IllegalTriangleException("Định dạng cạnh không hợp lệ");
                 }
                 break;
             } catch (IllegalTriangleException e) {

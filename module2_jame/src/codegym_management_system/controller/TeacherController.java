@@ -4,12 +4,13 @@ import codegym_management_system.service.ITeacherService;
 import codegym_management_system.service.impl.TeacherService;
 import codegym_management_system.utils.TeacherException;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TeacherController {
     private static ITeacherService iTeacherService = new TeacherService();
     private static Scanner scanner = new Scanner(System.in);
-    public static void menuTeacher() throws TeacherException {
+    public static void menuTeacher() throws TeacherException, IOException {
         while (true) {
             System.out.println("-----------------------------------------------------------");
             System.out.println("Quản lý giáo viên CodeGym");

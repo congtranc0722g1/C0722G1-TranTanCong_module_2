@@ -4,6 +4,7 @@ import codegym_management_system.model.Student;
 import codegym_management_system.service.IStudentService;
 import codegym_management_system.utils.StudentException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,15 +14,53 @@ public class StudentService implements IStudentService{
     private static List<Student> studentList = new ArrayList<>();
 
     @Override
-    public void addStudent() throws StudentException {
-        Student student = this.infoStudent();
+    public void addStudent() throws StudentException, IOException {
+        // thêm vào từ bàn phím
+//        Student student = this.infoStudent();
+//
+//        studentList.add(student);
+//        System.out.println("Thêm mới thành công");
 
+
+        Student student = this.infoStudent();
         studentList.add(student);
         System.out.println("Thêm mới thành công");
-    }
+
+        try {
+            File file = new File("src\\codegym_management_system\\data\\student.csv");
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+
+            for (Student st : studentList) {
+                bufferedWriter.write(st.getInfo());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }catch (IOException e){
+            System.out.println("sai rồi");
+        }
+        }
 
     @Override
-    public void displayAllStudent() {
+    public void displayAllStudent() throws IOException {
+     //        Hiển thị không từ file
+//        for(Student student: studentList) {
+//            System.out.println(student);
+//        }
+        studentList = new ArrayList<>();
+        File file = new File("src\\codegym_management_system\\data\\student.csv");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        String line;
+        String[] info;
+        Student student1;
+        while ((line = bufferedReader.readLine()) != null){
+            info = line.split(",");
+            student1 = new Student(info[0], info[1], info[2], info[3], Double.parseDouble(info[4]));
+            studentList.add(student1);
+        }
+        bufferedReader.close();
+
         for(Student student: studentList) {
             System.out.println(student);
         }

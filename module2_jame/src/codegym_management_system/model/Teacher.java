@@ -29,6 +29,10 @@ public class Teacher extends Person implements Comparable<Teacher>{
                 "Trình độ: " + getSpecialize();
     }
 
+    public String getInfo(){
+        return String.format("%s,%s,%s,%s",getCode(),getName(),getGender(),getSpecialize());
+    }
+
     @Override
     public int compareTo(Teacher o) {
         if (this.getName().compareTo(o.getName()) != 0) {

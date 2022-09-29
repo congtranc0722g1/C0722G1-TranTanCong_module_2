@@ -6,6 +6,7 @@ import codegym_management_system.service.ITeacherService;
 import codegym_management_system.utils.StudentException;
 import codegym_management_system.utils.TeacherException;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,12 +20,43 @@ public class TeacherService implements ITeacherService {
         Teacher teacher = infoTeacher();
         teacherList.add(teacher);
         System.out.println("Thêm mới thành công");
+
+        try {
+            File file = new File("src\\codegym_management_system\\data\\teacher.csv");
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+
+            for (Teacher tc : teacherList) {
+                bufferedWriter.write(tc.getInfo());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }catch (IOException e){
+            System.out.println("sai rồi");
+        }
     }
 
     @Override
-    public void displayAllTeacher() {
-        for (Teacher teacher : teacherList) {
-            System.out.println(teacher);
+    public void displayAllTeacher() throws IOException {
+//        for (Teacher teacher : teacherList) {
+//            System.out.println(teacher);
+//        }
+        teacherList = new ArrayList<>();
+        File file = new File("src\\codegym_management_system\\data\\teacher.csv");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+        String line;
+        String[] info;
+        Teacher teacher;
+        while ((line = bufferedReader.readLine()) != null){
+            info = line.split(",");
+            teacher = new Teacher(info[0], info[1], info[2], info[3]);
+            teacherList.add(teacher);
+        }
+        bufferedReader.close();
+
+        for(Teacher teacher1: teacherList) {
+            System.out.println(teacher1);
         }
     }
 

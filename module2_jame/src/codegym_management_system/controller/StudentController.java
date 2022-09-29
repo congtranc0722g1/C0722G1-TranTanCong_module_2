@@ -4,12 +4,13 @@ import codegym_management_system.service.IStudentService;
 import codegym_management_system.service.impl.StudentService;
 import codegym_management_system.utils.StudentException;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentController {
     private static IStudentService iStudentService = new StudentService();
     private static Scanner scanner = new Scanner(System.in);
-    public static void menuStudent() throws StudentException {
+    public static void menuStudent() throws StudentException, IOException {
         while (true) {
             System.out.println("-----------------------------------------------------------");
             System.out.println("Quản lý học sinh CodeGym");

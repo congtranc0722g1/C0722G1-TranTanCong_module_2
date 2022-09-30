@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ProductController {
     private  static IProductService iProductService = new ProductService();
     private  static Scanner scanner = new Scanner(System.in);
-    public static void menuProduct() throws IOException {
+    public static void menuProduct() throws IOException, ClassNotFoundException {
         while (true){
             System.out.println("-----------------------------------------------------------");
             System.out.println("Chương trình quản lý sản phẩm");

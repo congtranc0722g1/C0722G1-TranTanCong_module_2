@@ -8,7 +8,7 @@ import java.io.IOException;
 public interface ITeacherService {
     void addTeacher() throws TeacherException;
 
-    void displayAllTeacher() throws IOException;
+    void displayAllTeacher();
 
     void removeTeacher();
 

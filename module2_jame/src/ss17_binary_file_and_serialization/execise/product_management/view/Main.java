@@ -5,7 +5,7 @@ import ss17_binary_file_and_serialization.execise.product_management.controller.
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         ProductController.menuProduct();
     }
 }

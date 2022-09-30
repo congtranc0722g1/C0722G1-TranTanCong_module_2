@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class CodeGymController {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void menuCodegym() throws TeacherException, StudentException, IOException {
+    public static void menuCodegym() throws TeacherException, StudentException {
         while (true){
             System.out.println("-----------------------------------------------------------");
             System.out.println("Chào mừng bạn đến với chương trình quản lý CodeGym");

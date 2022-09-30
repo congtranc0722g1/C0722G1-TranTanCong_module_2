@@ -6,9 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface IStudentService {
-    void addStudent() throws StudentException, IOException;
+    void addStudent() throws StudentException;
 
-    void displayAllStudent() throws IOException;
+    void displayAllStudent();
 
     void removeStudent();
 

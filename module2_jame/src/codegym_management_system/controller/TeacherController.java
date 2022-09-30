@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class TeacherController {
     private static ITeacherService iTeacherService = new TeacherService();
     private static Scanner scanner = new Scanner(System.in);
-    public static void menuTeacher() throws TeacherException, IOException {
+    public static void menuTeacher() throws TeacherException {
         while (true) {
             System.out.println("-----------------------------------------------------------");
             System.out.println("Quản lý giáo viên CodeGym");

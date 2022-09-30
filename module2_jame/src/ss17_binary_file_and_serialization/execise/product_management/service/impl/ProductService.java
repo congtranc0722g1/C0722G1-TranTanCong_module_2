@@ -12,38 +12,38 @@ public class ProductService implements IProductService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Product> productList = new ArrayList<>();
     @Override
-    public void addProduct() throws IOException {
+    public void addProduct() {
+        productList = readFileProduct();
         Product product = this.infoProduct();
+
         productList.add(product);
-        System.out.println("Thêm mới thành công");
-
-        FileOutputStream fileOutputStream = new FileOutputStream("src\\ss17_binary_file_and_serialization\\execise\\product_management\\data\\product.dat");
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-        for (Product product1 : productList) {
-            objectOutputStream.writeObject(product1.getInfo());
-        }
-        objectOutputStream.close();
+        writeFileList(productList);
+        System.out.println("Nhập thành công");
     }
 
     @Override
-    public void displayProduct() throws IOException {
-            FileInputStream fileInputStream = new FileInputStream("src\\ss17_binary_file_and_serialization\\execise\\product_management\\data\\product.dat");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-
+    public void displayProduct() {
+        productList = readFileProduct();
+        for (Product product : productList) {
+            System.out.println(product);
+        }
     }
 
     @Override
     public void searchProduct() {
+        productList = readFileProduct();
         System.out.println("Nhập tên sản phẩm cần tìm: ");
         String name = scanner.nextLine();
-
-        for (int i = 0; i < productList.size(); i++) {
-            productList.get(i).getName().contains(name);
-            System.out.println(productList.get(i));
+        boolean check = false;
+        for (Product product : productList) {
+            if (product.getName().contains(name)){
+                check = true;
+                System.out.println(product);
+            }
         }
-
+        if(!check){
+            System.out.println("Không tìm thấy sản phẩm");
+        }
     }
 
     public Product infoProduct(){
@@ -59,5 +59,52 @@ public class ProductService implements IProductService {
         String describe = scanner.nextLine();
         Product product = new Product(code, name, company, price, describe);
         return  product;
+    }
+
+    private List<Product> readFileProduct(){
+        List<Product> productList = null;
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            fileInputStream = new FileInputStream("src\\ss17_binary_file_and_serialization\\execise\\product_management\\data\\product.dat");
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            productList = (List<Product>) objectInputStream.readObject();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            objectInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+
+    private void writeFileList(List<Product> productList){
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream("src\\ss17_binary_file_and_serialization\\execise\\product_management\\data\\product.dat");
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(productList);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            objectOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

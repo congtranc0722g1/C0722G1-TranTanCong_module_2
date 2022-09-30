@@ -40,10 +40,7 @@ public class Student extends Person implements Comparable<Student> {
                 "Tên lớp: " + getNameClass() + ",\t" +
                 "Điểm: " + getScore();
     }
-
-    public String getInfo() {
-        return String.format("%s,%s,%s,%s,%s",this.getCode(),this.getName(), this.getGender(),this.getNameClass(),this.getScore());
-    }
+    
     @Override
     public int compareTo(Student o) {
         if (this.getName().compareTo(o.getName()) != 0){

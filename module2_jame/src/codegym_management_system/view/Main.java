@@ -7,7 +7,7 @@ import codegym_management_system.utils.TeacherException;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws StudentException, TeacherException, IOException {
+    public static void main(String[] args) throws StudentException, TeacherException {
         CodeGymController.menuCodegym();
     }
 }

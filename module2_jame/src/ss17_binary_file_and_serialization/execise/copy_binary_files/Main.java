@@ -19,6 +19,8 @@ public class Main {
         stringList.add("Cong");
         stringList.add("Tan");
         stringList.add("Tran");
+        stringList.add("17dcn1b");
+        stringList.add("alo");
         try {
             objectOutputStream.writeObject(stringList);
         } catch (IOException e) {
@@ -30,10 +32,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
         try {
-            fileInputStream = new FileInputStream("src\\ss17_binary_file_and_serialization\\execise\\copy_binary_files\\source.dat");
+            FileInputStream fileInputStream = new FileInputStream("src\\ss17_binary_file_and_serialization\\execise\\copy_binary_files\\source.dat");
             objectInputStream = new ObjectInputStream(fileInputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -53,10 +54,9 @@ public class Main {
             e.printStackTrace();
         }
 
-        FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream1 = null;
         try {
-            fileOutputStream = new FileOutputStream("src\\ss17_binary_file_and_serialization\\execise\\copy_binary_files\\target.dat");
+            FileOutputStream fileOutputStream = new FileOutputStream("src\\ss17_binary_file_and_serialization\\execise\\copy_binary_files\\target.dat");
             objectOutputStream1 = new ObjectOutputStream(fileOutputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class StudentService implements IStudentService {
     private static Scanner scanner = new Scanner(System.in);
     private static List<Student> studentList = new ArrayList<>();
+    final String NAME_REGEX = "[[A-Z][a-z][\\s]]+";
 
     @Override
     public void addStudent() {
@@ -38,16 +39,15 @@ public class StudentService implements IStudentService {
 //        }catch (IOException e){
 //            System.out.println("sai rồi");
 //        }
-        Student student = null;
         try {
-            student = this.infoStudent();
+            studentList = readFileStudent();
+            Student student = this.infoStudent();
+            studentList.add(student);
+            writeFileStudent(studentList);
+            System.out.println("Thêm mới thành công");
         } catch (StudentException e) {
             e.printStackTrace();
         }
-        studentList = readFileStudent();
-        studentList.add(student);
-        writeFileStudent(studentList);
-        System.out.println("Thêm mới thành công");
     }
 
     @Override
@@ -186,7 +186,6 @@ public class StudentService implements IStudentService {
     }
 
     private List<Student> readFileStudent() {
-        File file = null;
         BufferedReader bufferedReader = null;
 
         String line;
@@ -195,7 +194,7 @@ public class StudentService implements IStudentService {
 
         try {
             studentList = new ArrayList<>();
-            file = new File("src\\codegym_management_system\\data\\student.csv");
+            File file = new File("src\\codegym_management_system\\data\\student.csv");
             FileReader fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
@@ -237,5 +236,9 @@ public class StudentService implements IStudentService {
 
         private String getInfo(Student student){
             return String.format("%s,%s,%s,%s,%s", student.getCode(), student.getName(), student.getGender(), student.getNameClass(), student.getScore());
+        }
+
+        private void nameExample(){
+
         }
 }

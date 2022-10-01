@@ -33,6 +33,15 @@ public class TeacherService implements ITeacherService {
 //        }catch (IOException e){
 //            System.out.println("sai rồi");
 //        }
+        try {
+            teacherList = readFileTeacher();
+            Teacher teacher = infoTeacher();
+            teacherList.add(teacher);
+            writeFileTeacher(teacherList);
+            System.out.println("Thêm mới thành công");
+        } catch (TeacherException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -60,10 +69,15 @@ public class TeacherService implements ITeacherService {
 //        for(Teacher teacher1: teacherList) {
 //            System.out.println(teacher1);
 //        }
+        teacherList = readFileTeacher();
+        for (Teacher teacher : teacherList) {
+            System.out.println(teacher);
+        }
     }
 
     @Override
     public void removeTeacher() {
+        teacherList = readFileTeacher();
         System.out.print("Mời bạn nhập mã giáo viên cần xóa: ");
         String code = scanner.nextLine();
         boolean flagDelete = false;
@@ -81,6 +95,8 @@ public class TeacherService implements ITeacherService {
         }
         if (!flagDelete) {
             System.out.println("Không tìm thấy đối tượng cần xóa.");
+        }else {
+            writeFileTeacher(teacherList);
         }
     }
 
@@ -152,6 +168,62 @@ public class TeacherService implements ITeacherService {
 
             Teacher teacher = new Teacher(code, name, gender, specialize);
             return teacher;
+    }
+
+    private List<Teacher> readFileTeacher(){
+        BufferedReader bufferedReader = null;
+
+        String line;
+        String[] info;
+        Teacher teacher;
+
+        try {
+            teacherList = new ArrayList<>();
+            File file= new File("src\\codegym_management_system\\data\\teacher.csv");
+            FileReader fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+
+            while ((line = bufferedReader.readLine()) != null){
+                info = line.split(",");
+                teacher = new Teacher(info[0], info[1], info[2],info[3]);
+                teacherList.add(teacher);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return teacherList;
+    }
+    private void writeFileTeacher(List<Teacher> teachers){
+        BufferedWriter bufferedWriter = null;
+
+        try {
+            File file = new File("src\\codegym_management_system\\data\\teacher.csv");
+            FileWriter fileWriter = new FileWriter(file);
+            bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (Teacher teacher : teacherList) {
+                bufferedWriter.write(getInfo(teacher));
+                bufferedWriter.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private String getInfo(Teacher teacher){
+        return String.format("%s,%s,%s,%s",teacher.getCode(),teacher.getName(),teacher.getGender(),teacher.getSpecialize());
     }
 
 }

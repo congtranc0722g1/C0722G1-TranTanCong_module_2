@@ -141,15 +141,13 @@ public class TeacherService implements ITeacherService {
             try {
                 System.out.print("Mời bạn nhập tên giáo viên: ");
                 name = scanner.nextLine();
-                for (int i = 0; i < name.length(); i++) {
-                    if (name.charAt(i) <= '9' && name.charAt(i) >= '0'){
-                        throw new TeacherException("Tên không được chứa số");
-                    }
-
+                if (name.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")){
+                        break;
+                    }else {
+                    System.out.println("Tên nhập chưa đúng định dạng");
                 }
-                break;
-            } catch (TeacherException e) {
-                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

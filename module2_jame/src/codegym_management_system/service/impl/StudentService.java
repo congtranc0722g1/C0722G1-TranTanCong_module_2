@@ -39,15 +39,11 @@ public class StudentService implements IStudentService {
 //        }catch (IOException e){
 //            System.out.println("sai rồi");
 //        }
-        try {
             studentList = readFileStudent();
             Student student = this.infoStudent();
             studentList.add(student);
             writeFileStudent(studentList);
             System.out.println("Thêm mới thành công");
-        } catch (StudentException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -138,21 +134,16 @@ public class StudentService implements IStudentService {
         }
     }
 
-    public Student infoStudent() throws StudentException {
-        double score;
-        String name;
-        System.out.print("Mời bạn nhập mã học sinh: ");
-        String code = scanner.nextLine();
-
+    public Student infoStudent() {
+        String code;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập tên học sinh: ");
-                name = scanner.nextLine();
-                for (int i = 0; i < name.length(); i++) {
-                    if (name.charAt(i) <= '9' && name.charAt(i) >= '0') {
-                        throw new StudentException("Tên không được chứa số");
+                System.out.println("Mời bạn nhập mã học sinh: ");
+                code = scanner.nextLine();
+                for (int i = 0; i < studentList.size(); i++) {
+                    if (studentList.get(i).getCode().equals(code)) {
+                        throw new StudentException("Id này đã tồn tại. Vui lòng nhập mã khác.");
                     }
-
                 }
                 break;
             } catch (StudentException e) {
@@ -160,32 +151,65 @@ public class StudentService implements IStudentService {
             }
         }
 
-        System.out.print("Mời bạn nhập giới tính học sinh (1.Nam. 2.Nữ: )");
-        int tempGender = Integer.parseInt(scanner.nextLine());
-        String gender;
-        if (tempGender == 1) {
-            gender = "Nam";
-        } else if (tempGender == 2) {
-            gender = "Nữ";
-        } else {
-            gender = null;
-        }
-        System.out.print("Mời bạn nhập tên lớp: ");
-        String nameClass = scanner.nextLine();
+        String name;
         while (true) {
             try {
-                System.out.print("Mời bạn nhập điểm của học sinh: ");
-                score = Double.parseDouble(scanner.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Điểm phải là một số");
+                System.out.print("Mời bạn nhập tên học sinh: ");
+                name = scanner.nextLine();
+                if (name.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")) {
+                    break;
+                } else {
+                    System.out.println("Tên nhập chưa đúng định dạng");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        Student student = new Student(code, name, gender, nameClass, score);
-        return student;
+
+            System.out.print("Mời bạn nhập giới tính học sinh (1.Nam. 2.Nữ: )");
+            int tempGender = Integer.parseInt(scanner.nextLine());
+            String gender;
+            if(tempGender == 1) {
+                gender = "Nam";
+            } else if(tempGender == 2) {
+                gender = "Nữ";
+            } else {
+                gender = null;
+            }
+
+            String nameClass;
+            while (true){
+                System.out.print("Mời bạn nhập tên lớp của học sinh: ");
+                nameClass = scanner.nextLine();
+                if (nameClass.matches("[C][0-9]{6}[G][12]")){
+                    break;
+                }else {
+                    System.out.println("Tên lớp sai định dạng");
+                }
+            }
+
+        double score;
+        while (true){
+         try {
+            System.out.print("Mời bạn nhập điểm: ");
+            score = Integer.parseInt(scanner.nextLine());
+            if (score < 0 || score > 100) {
+                throw new StudentException("Bạn không thể nhập điểm nhỏ hơn 0 và lớn hơn 100");
+            }
+            break;
+         } catch (NumberFormatException e) {
+            System.out.println("Bạn nhập không phải là số. Yêu cầu nhập lại.");
+         } catch (StudentException e) {
+            System.out.println(e.getMessage());
+         }
     }
 
-    private List<Student> readFileStudent() {
+        Student student = new Student(code,name,gender,nameClass,score);
+            return student;
+    }
+
+
+        private List<Student> readFileStudent() {
         BufferedReader bufferedReader = null;
 
         String line;

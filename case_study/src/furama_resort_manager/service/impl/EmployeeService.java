@@ -19,9 +19,13 @@ public class EmployeeService implements IService, IEmployeeService {
 
     @Override
     public void displayListEmployees() {
-        employeeList = readFileEmployee();
-        for (Employee employee : employeeList) {
-            System.out.println(employee);
+        try {
+            employeeList = readFileEmployee();
+            for (Employee employee : employeeList) {
+                System.out.println(employee);
+            }
+        } catch (Exception e) {
+            System.out.println("List is empty");;
         }
     }
 
@@ -33,9 +37,214 @@ public class EmployeeService implements IService, IEmployeeService {
         codeEdit = scanner.nextLine();
         for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getCode().equals(codeEdit)){
+                String codeEdits;
+                while (true){
+                    try {
+                        System.out.println("Enter new code (Ex: NV-0000): ");
+                        codeEdits = scanner.nextLine();
+                        for (int j = 0; j < employeeList.size(); j++) {
+                            if (employeeList.get(j).getCode().equals(codeEdits)){
+                                throw new CodeException("Code cannot be duplicated. Please re-enter");
+                            }
+                        }
+                        if(Regex.checkCodePerson(codeEdits)){
+                            employeeList.get(i).setName(codeEdits);
+                            break;
+                        } else {
+                            System.out.println("Invalid employee CODE format. Please re-enter");
+                        }
+                    } catch (CodeException e) {
+                        System.out.println("Code cannot be duplicated. Please re-enter");
+                    }
+                }
+
+                String nameEdit;
+                while (true){
+                    try {
+                        System.out.println("Enter new name (Ex: Nguyễn văn A): ");
+                        nameEdit = scanner.nextLine();
+                        if (nameEdit.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")){
+                            employeeList.get(i).setName(nameEdit);
+                            break;
+                        } else {
+                            System.out.println("The input name is not in the correct format. Please re-enter");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                LocalDate localDate = LocalDate.now();
+                LocalDate dateOfBirthEdit;
+
+                while (true){
+                    try {
+                        System.out.println("Enter new date of birth (dd/MM/yyyy): ");
+                        String day = scanner.nextLine();
+                        dateOfBirthEdit = LocalDate.parse(day, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        employeeList.get(i).setDateOfBirth(dateOfBirthEdit);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("The date of birth entered is not in the correct format, please re-enter");
+                    }
+                }
+                String genderEdit;
+                abc11:
+                while (true){
+                    try {
+                        System.out.println("Enter new gender(1.Male, 2.Female, 3.Other): ");
+                        int tempGender = Integer.parseInt(scanner.nextLine());
+                        switch (tempGender){
+                            case 1:
+                                genderEdit = "Male";
+                                employeeList.get(i).setGender(genderEdit);
+                                break abc11;
+                            case 2:
+                                genderEdit = "Female";
+                                employeeList.get(i).setGender(genderEdit);
+                                break abc11;
+                            case 3:
+                                genderEdit = "Other";
+                                employeeList.get(i).setGender(genderEdit);
+                                break abc11;
+                            default:
+                                System.out.println("Please enter as required");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
+
+                String idNumberEdit;
+                while (true){
+                    try {
+                        System.out.println("Enter a new identity card number (Ex: 384709875847): ");
+                        idNumberEdit = scanner.nextLine();
+                        if (Regex.checkIdentityNumber(idNumberEdit)){
+                            employeeList.get(i).setIdentityNumber(idNumberEdit);
+                            break;
+                        }else {
+                            System.out.println("Invalid ID card number. Please re-enter");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
+                String phoneNumberEdit;
+                while (true){
+                    try {
+                        System.out.println("Enter new phone number (Ex: +84901961xxx): ");
+                        phoneNumberEdit = scanner.nextLine();
+                        if (Regex.checkPhoneNumber(phoneNumberEdit)){
+                            employeeList.get(i).setPhoneNumber(phoneNumberEdit);
+                            break;
+                        }else {
+                            System.out.println("invalid phone number");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
+                String emailEdit;
+                while (true){
+                    try {
+                        System.out.println("Enter new email (Ex: abc@gmail.com): ");
+                        emailEdit = scanner.nextLine();
+                        if (Regex.checkEmail(emailEdit)){
+                            employeeList.get(i).setEmail(emailEdit);
+                            break;
+                        }else {
+                            System.out.println("Invalid email. Please re-enter");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
+                String levelEdit;
+                abc12:
+                while (true){
+                    try {
+                        System.out.println("Enter new employee level \n(1. Intermediate level, 2.College level, 3. University level, 4. Postgraduate level): ");
+                        int tempLevelEdit = Integer.parseInt(scanner.nextLine());
+                        switch (tempLevelEdit){
+                            case 1:
+                                levelEdit = "Intermediate level";
+                                employeeList.get(i).setLevel(levelEdit);
+                                break abc12;
+                            case 2:
+                                levelEdit = "College level";
+                                employeeList.get(i).setLevel(levelEdit);
+                                break abc12;
+                            case 3:
+                                levelEdit = "University level";
+                                employeeList.get(i).setLevel(levelEdit);
+                                break abc12;
+                            case 4:
+                                levelEdit = "Postgraduate level";
+                                employeeList.get(i).setLevel(levelEdit);
+                                break abc12;
+                            default:
+                                System.out.println("Please enter as required");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
+                String positionEdit;
+                abc13:
+                while (true){
+                    try {
+                        System.out.println("Enter position (1. Reception, 2. Serve,\n 3. Expert, 4. Supervise, 5. Administer, 6. Director)");
+                        int tempPositionEdit = Integer.parseInt(scanner.nextLine());
+                        switch (tempPositionEdit){
+                            case 1:
+                                positionEdit = "Reception";
+                                employeeList.get(i).setPosition(positionEdit);
+                                break abc13;
+                            case 2:
+                                positionEdit = "Serve";
+                                employeeList.get(i).setPosition(positionEdit);
+                                break abc13;
+                            case 3:
+                                positionEdit = "Expert";
+                                employeeList.get(i).setPosition(positionEdit);
+                                break abc13;
+                            case 4:
+                                positionEdit = "Supervise";
+                                employeeList.get(i).setPosition(positionEdit);
+                                break abc13;
+                            case 5:
+                                positionEdit = "Administer";
+                                employeeList.get(i).setPosition(positionEdit);
+                                break abc13;
+                            case 6:
+                                positionEdit = "Director";
+                                employeeList.get(i).setPosition(positionEdit);
+                                break abc13;
+                            default:
+                                System.out.println("Please enter as required");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
+                String salaryEdit;
+                while (true){
+                    try {
+                        System.out.println("Enter new employee salary (Ex: 5000000VND): ");
+                        salaryEdit = scanner.nextLine();
+                        if (Regex.checkSalary(salaryEdit)){
+                            employeeList.get(i).setSalary(salaryEdit);
+                            break;
+                        }else {
+                            System.out.println("The format is not correct. Please re-enter");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Invalid syntax. Please try again");
+                    }
+                }
             }
         }
-
+        writeFileEmployee(employeeList);
     }
 
     @Override
@@ -72,7 +281,7 @@ public class EmployeeService implements IService, IEmployeeService {
         String name;
         while (true){
             try {
-                System.out.println("Enter employee name (Ex: Nguyễn văn A): ");
+                System.out.println("Enter name (Ex: Nguyễn văn A): ");
                 name = scanner.nextLine();
                 if (name.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")){
                     break;
@@ -87,7 +296,7 @@ public class EmployeeService implements IService, IEmployeeService {
         LocalDate dateOfBirth;
         while (true){
             try {
-                System.out.println("Enter employee's date of birth (dd/MM/yyyy): ");
+                System.out.println("Enter date of birth (dd/MM/yyyy): ");
                 String day = scanner.nextLine();
                 dateOfBirth = LocalDate.parse(day, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 break;
@@ -124,7 +333,7 @@ public class EmployeeService implements IService, IEmployeeService {
 
         while (true) {
             try {
-                System.out.println("Enter the employee's identity card number(Ex: 384709875847): ");
+                System.out.println("Enter identity card number (Ex: 384709875847): ");
                 identityNumber = scanner.nextLine();
                 if (Regex.checkIdentityNumber(identityNumber)){
                     break;
@@ -139,7 +348,7 @@ public class EmployeeService implements IService, IEmployeeService {
         String phoneNumber;
         while (true){
             try {
-                System.out.println("Enter employee phone number(Ex: 0901961xxx): ");
+                System.out.println("Enter phone number(Ex: +84901961xxx): ");
                 phoneNumber = scanner.nextLine();
                 if (Regex.checkPhoneNumber(phoneNumber)){
                     break;
@@ -229,12 +438,16 @@ public class EmployeeService implements IService, IEmployeeService {
         String salary;
 
         while (true){
-            System.out.println("Enter employee salary (Ex: 5000000VND): ");
-            salary = scanner.nextLine();
-            if(Regex.checkSalary(salary)){
-                break;
-            }else {
-                System.out.println("The format is not correct. Please re-enter");
+            try {
+                System.out.println("Enter employee salary (Ex: 5000000VND): ");
+                salary = scanner.nextLine();
+                if(Regex.checkSalary(salary)){
+                    break;
+                }else {
+                    System.out.println("The format is not correct. Please re-enter");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid syntax. Please try again");
             }
         }
 

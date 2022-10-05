@@ -11,25 +11,31 @@ public class CustomerController {
     private static Scanner scanner = new Scanner(System.in);
     public static void displayCustomerMenu(){
         while (true){
-            System.out.println("-------------------------------------------------------------");
-            System.out.println("Customer Managemen");
-            System.out.println("1. Display list customers");
-            System.out.println("2. Add new customer");
-            System.out.println("3. Edit customer");
-            System.out.println("4. Return main menu");
-            int choice = Integer.parseInt(scanner.nextLine());
-            switch (choice){
-                case 1:
-                    iCustomerService.displayListCustomers();
-                    return;
-                case 2:
-                    iCustomerService.add();
-                    return;
-                case 3:
-                    iCustomerService.editCustomer();
-                    return;
-                case 4:
-                    return;
+            try {
+                System.out.println("-------------------------------------------------------------");
+                System.out.println("Customer Managemen");
+                System.out.println("1. Display list customers");
+                System.out.println("2. Add new customer");
+                System.out.println("3. Edit customer");
+                System.out.println("4. Return main menu");
+                int choice = Integer.parseInt(scanner.nextLine());
+                switch (choice){
+                    case 1:
+                        iCustomerService.displayListCustomers();
+                        break;
+                    case 2:
+                        iCustomerService.add();
+                        break;
+                    case 3:
+                        iCustomerService.editCustomer();
+                        break;
+                    case 4:
+                        return;
+                    default:
+                        System.out.println("Please enter correctly as required");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid syntax. Please try again");
             }
         }
     }

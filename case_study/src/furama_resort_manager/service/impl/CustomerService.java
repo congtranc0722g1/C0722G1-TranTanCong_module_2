@@ -9,13 +9,13 @@ import furama_resort_manager.utils.regex.Regex;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerService implements IService, ICustomerService {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<Customer> customerList = new ArrayList<>();
+    private static List<Customer> customerList = new LinkedList<>();
     @Override
     public void displayListCustomers() {
         try {
@@ -363,7 +363,7 @@ public class CustomerService implements IService, ICustomerService {
         Customer customer;
 
         try {
-            customerList = new ArrayList<>();
+            customerList = new LinkedList<>();
             File file = new File("src\\furama_resort_manager\\data\\customer.csv");
             FileReader fileReader = new FileReader(file);
             bufferedReader = new BufferedReader(fileReader);

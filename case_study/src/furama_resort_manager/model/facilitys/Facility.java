@@ -1,6 +1,7 @@
 package furama_resort_manager.model.facilitys;
 
 public abstract class Facility {
+    private String code;
     private String serviceName;
     private double area;
     private String cost;
@@ -11,12 +12,21 @@ public abstract class Facility {
 
     }
 
-    public Facility(String serviceName, double area, String cost, int amount, String type) {
+    public Facility(String code, String serviceName, double area, String cost, int amount, String type) {
+        this.code = code;
         this.serviceName = serviceName;
         this.area = area;
         this.cost = cost;
         this.amount = amount;
         this.type = type;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getServiceName() {

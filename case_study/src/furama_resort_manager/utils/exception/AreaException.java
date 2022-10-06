@@ -1,0 +1,7 @@
+package furama_resort_manager.utils.exception;
+
+public class AreaException extends Exception{
+    public AreaException(String message) {
+        super(message);
+    }
+}

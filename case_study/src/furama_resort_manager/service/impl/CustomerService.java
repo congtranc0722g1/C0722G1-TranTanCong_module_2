@@ -45,7 +45,7 @@ public class CustomerService implements IService, ICustomerService {
                             try {
                                 System.out.println("Enter new name (Ex: Nguyễn văn A): ");
                                 nameEdit = scanner.nextLine();
-                                if (nameEdit.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")){
+                                if (Regex.checkName(nameEdit)){
                                     customerList.get(i).setName(nameEdit);
                                     break;
                                 }else {
@@ -72,7 +72,7 @@ public class CustomerService implements IService, ICustomerService {
                         abc109:
                         while (true){
                             try {
-                                System.out.println("Enter new gender(1.Male, 2.Female, 3.Other): ");
+                                System.out.println("Enter new gender:\n1. Male \n2. Female \n3. Other");
                                 int tempGender = Integer.parseInt(scanner.nextLine());
                                 switch (tempGender){
                                     case 1:
@@ -140,7 +140,7 @@ public class CustomerService implements IService, ICustomerService {
                         abc108:
                         while (true){
                             try {
-                                System.out.println("Enter new guest type (1. Diamond, 2. Platinium, 3. Gold, 4. Silver, 5. Member: ");
+                                System.out.println("Enter new guest type:\n1. Diamond\n2. Platinium\n3. Gold\n4. Silver\n5. Member");
                                 int tempGuestType = Integer.parseInt(scanner.nextLine());
                                 switch (tempGuestType){
                                     case 1:
@@ -225,7 +225,7 @@ public class CustomerService implements IService, ICustomerService {
             try {
                 System.out.println("Enter name (Nguyễn Văn A): ");
                 name =scanner.nextLine();
-                if (name.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")){
+                if (Regex.checkName(name)){
                     break;
                 }else {
                     System.out.println("The input name is not in the correct format. Please re-enter");
@@ -250,7 +250,7 @@ public class CustomerService implements IService, ICustomerService {
         abc100:
         while (true){
             try {
-                System.out.println("Enter  gender(1.Male, 2.Female, 3.Other):");
+                System.out.println("Enter  gender:\n1.Male\n2.Female\n3.Other");
                 int tempGender = Integer.parseInt(scanner.nextLine());
                 switch (tempGender){
                     case 1:
@@ -319,7 +319,7 @@ public class CustomerService implements IService, ICustomerService {
         abc101:
         while (true){
             try {
-                System.out.println("Enter guest type (1. Diamond, 2. Platinium, 3. Gold, 4. Silver, 5. Member: ");
+                System.out.println("Enter guest type:\n1. Diamond\n2. Platinium\n3. Gold\n4. Silver\n5. Member");
                 int tempGuestType = Integer.parseInt(scanner.nextLine());
                 switch (tempGuestType){
                     case 1:

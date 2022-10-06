@@ -45,7 +45,7 @@ public class EmployeeService implements IService, IEmployeeService {
                             try {
                                 System.out.println("Enter new name (Ex: Nguyễn văn A): ");
                                 nameEdit = scanner.nextLine();
-                                if (nameEdit.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")) {
+                                if (Regex.checkName(nameEdit)){
                                     employeeList.get(i).setName(nameEdit);
                                     break;
                                 } else {
@@ -73,7 +73,7 @@ public class EmployeeService implements IService, IEmployeeService {
                         abc11:
                         while (true) {
                             try {
-                                System.out.println("Enter new gender(1.Male, 2.Female, 3.Other): ");
+                                System.out.println("Enter new gender:\n1.Male\n2.Female\n3.Other");
                                 int tempGender = Integer.parseInt(scanner.nextLine());
                                 switch (tempGender) {
                                     case 1:
@@ -145,7 +145,7 @@ public class EmployeeService implements IService, IEmployeeService {
                         abc12:
                         while (true) {
                             try {
-                                System.out.println("Enter new employee level \n(1. Intermediate level, 2.College level, 3. University level, 4. Postgraduate level): ");
+                                System.out.println("Enter new employee level:\n1. Intermediate level\n2.College level\n3. University level\n4. Postgraduate level");
                                 int tempLevelEdit = Integer.parseInt(scanner.nextLine());
                                 switch (tempLevelEdit) {
                                     case 1:
@@ -175,7 +175,7 @@ public class EmployeeService implements IService, IEmployeeService {
                         abc13:
                         while (true) {
                             try {
-                                System.out.println("Enter position (1. Reception, 2. Serve,\n 3. Expert, 4. Supervise, 5. Administer, 6. Director)");
+                                System.out.println("Enter position:\n1. Reception\n2. Serve\n3. Expert\n4. Supervise\n5. Administer\n6. Director");
                                 int tempPositionEdit = Integer.parseInt(scanner.nextLine());
                                 switch (tempPositionEdit) {
                                     case 1:
@@ -273,7 +273,7 @@ public class EmployeeService implements IService, IEmployeeService {
             try {
                 System.out.println("Enter name (Ex: Nguyễn văn A): ");
                 name = scanner.nextLine();
-                if (name.matches("^([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*[\\s])*([A-Z][a-záàảạãăắằặẵâấầẫậẩéèẻẽẹêếềểễệóòỏõọôốồổỗộơớờởỡợíìỉĩịùúủũụưứửữựỵỷỹýỳ]*)$")){
+                if (Regex.checkName(name)){
                     break;
                 }else {
                     System.out.println("The input name is not in the correct format. Please re-enter");
@@ -299,7 +299,7 @@ public class EmployeeService implements IService, IEmployeeService {
         abc:
         while (true){
             try {
-                System.out.println("Enter employee gender(1.Male, 2.Female, 3.Other):");
+                System.out.println("Enter employee gender:\n1.Male\n2.Female\n3.Other");
                 int tempGender = Integer.parseInt(scanner.nextLine());
                 switch (tempGender){
                     case 1:
@@ -369,7 +369,7 @@ public class EmployeeService implements IService, IEmployeeService {
         abc1:
         while (true){
             try {
-                System.out.println("Enter employee level \n(1. Intermediate level, 2.College level, 3. University level, 4. Postgraduate level): ");
+                System.out.println("Enter employee level:\n1. Intermediate level\n2.College level\n3. University level\n4. Postgraduate level");
                 int tempLevel = Integer.parseInt(scanner.nextLine());
                 switch (tempLevel){
                     case 1:
@@ -396,7 +396,7 @@ public class EmployeeService implements IService, IEmployeeService {
         abc2:
         while (true){
             try {
-                System.out.println("Enter position (1. Reception, 2. Serve,\n 3. Expert, 4. Supervise, 5. Administer, 6. Director)");
+                System.out.println("Enter position:\n1. Reception\n2. Serve\n3. Expert\n4. Supervise\n5. Administer\n6. Director");
                 int tempPosition = Integer.parseInt(scanner.nextLine());
                 switch (tempPosition){
                     case 1:

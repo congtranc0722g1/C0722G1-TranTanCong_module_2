@@ -7,7 +7,7 @@ public class Room extends Facility{
 
     }
 
-    public Room(String code, String name, double area, String cost, int amount, String type, String freeService) {
+    public Room(String code, String name, double area, double cost, int amount, String type, String freeService) {
         super(code, name, area, cost, amount, type);
         this.freeService = freeService;
     }
@@ -18,5 +18,10 @@ public class Room extends Facility{
 
     public void setFreeService(String freeService) {
         this.freeService = freeService;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Free Service: " + freeService;
     }
 }

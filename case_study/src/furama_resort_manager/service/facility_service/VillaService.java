@@ -42,13 +42,12 @@ public class VillaService implements IVillaService {
             try {
                 System.out.println("Enter villa code (Ex: SVVL-0000): ");
                 code = scanner.nextLine();
-                if (Regex.checkCodeVilla(code)){
-                    break;
-                }else {
-                    System.out.println("Invalid villa CODE format. Please re-enter");
+                if (!Regex.checkCodeVilla(code)){
+                    throw new Exception("Invalid villa CODE format. Please re-enter");
                 }
+                break;
             } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                System.out.println(e.getMessage());
             }
         }
         String name;
@@ -56,13 +55,12 @@ public class VillaService implements IVillaService {
             try {
                 System.out.println("Enter service name (Ex: Villa1): ");
                 name = scanner.nextLine();
-                if (Regex.checkNameFacility(name)){
-                    break;
-                }else {
-                    System.out.println("Invalid service name format. Please re-enter");
+                if (!Regex.checkNameFacility(name)){
+                    throw new Exception("Invalid service name format. Please re-enter");
                 }
+                break;
             } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                System.out.println(e.getMessage());
             }
         }
         double area;
@@ -74,6 +72,8 @@ public class VillaService implements IVillaService {
                     throw new AreaException("Area must be more than 30. Please try again");
                 }
                 break;
+            } catch (AreaException e){
+                System.out.println(e.getMessage());
             } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
@@ -89,6 +89,8 @@ public class VillaService implements IVillaService {
                 break;
             } catch (CostException e) {
                 System.out.println("Invalid syntax. Please try again");
+            } catch (Exception e){
+                System.out.println("Invalid syntax. Please try again");
             }
         }
         int amount;
@@ -101,6 +103,8 @@ public class VillaService implements IVillaService {
                 }
                 break;
             } catch (AmountException e) {
+                System.out.println("Invalid syntax. Please try again");
+            } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
         }
@@ -166,6 +170,8 @@ public class VillaService implements IVillaService {
                     throw new AreaException("Area must be more than 30. Please try again");
                 }
                 break;
+            } catch (AreaException e){
+                System.out.println(e.getMessage());
             } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
@@ -180,6 +186,8 @@ public class VillaService implements IVillaService {
                 }
                 break;
             } catch (FloorException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
         }

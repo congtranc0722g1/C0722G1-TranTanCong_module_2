@@ -16,7 +16,7 @@ public class Regex {
     }
 
     public static boolean checkPhoneNumber (String phone){
-        boolean check = phone.matches("^[+][0-9]{3}[0-9]{9}$");
+        boolean check = phone.matches("^[+][0-9]{2,3}[0-9]{9}$");
         return check;
     }
 

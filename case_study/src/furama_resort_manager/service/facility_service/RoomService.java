@@ -41,13 +41,13 @@ public class RoomService implements IRoomService {
             try {
                 System.out.println("Enter room code (Ex: SVRO-0000): ");
                 code = scanner.nextLine();
-                if (Regex.checkCodeRoom(code)){
-                    break;
-                }else {
-                    System.out.println("Invalid room CODE format. Please re-enter");
+                if (!Regex.checkCodeRoom(code)){
+                    throw new Exception("Invalid room CODE format. Please re-enter");
+
                 }
+                break;
             } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                System.out.println(e.getMessage());
             }
         }
         String name;
@@ -55,13 +55,12 @@ public class RoomService implements IRoomService {
             try {
                 System.out.println("Enter service name (Ex: Room1): ");
                 name = scanner.nextLine();
-                if (Regex.checkNameFacility(name)){
-                    break;
-                }else {
-                    System.out.println("Invalid service name format. Please re-enter");
+                if (!Regex.checkNameFacility(name)){
+                    throw new Exception("Invalid service name format. Please re-enter");
                 }
+                break;
             } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                System.out.println(e.getMessage());
             }
         }
         double area;
@@ -73,6 +72,8 @@ public class RoomService implements IRoomService {
                     throw new AreaException("Area must be more than 30. Please try again");
                 }
                 break;
+            } catch (AreaException e){
+                System.out.println(e.getMessage());
             } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
@@ -87,6 +88,8 @@ public class RoomService implements IRoomService {
                 }
                 break;
             } catch (CostException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
         }
@@ -100,6 +103,8 @@ public class RoomService implements IRoomService {
                 }
                 break;
             } catch (AmountException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e){
                 System.out.println("Invalid syntax. Please try again");
             }
         }

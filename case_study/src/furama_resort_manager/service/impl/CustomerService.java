@@ -7,6 +7,8 @@ import furama_resort_manager.utils.exception.CodeException;
 import furama_resort_manager.utils.regex.Regex;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
@@ -55,17 +57,26 @@ public class CustomerService implements IService, ICustomerService {
                                 System.out.println("Invalid syntax. Please try again");
                             }
                         }
-                        LocalDate localDate = LocalDate.now();
+                        String day;
                         LocalDate dateOfBirthEdit;
-                        while (true){
-                            try {
+
+                        while (true) {
+                            do {
                                 System.out.println("Enter new date of birth (dd/MM/yyyy): ");
-                                String day = scanner.nextLine();
-                                dateOfBirthEdit = LocalDate.parse(day, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                                customerList.get(i).setDateOfBirth(dateOfBirthEdit);
+                                day =scanner.nextLine();
+                                if (!isDateValid(day)){
+                                    System.out.println("The date of birth entered is not in the correct format, please re-enter");
+                                }
+                            }while (!isDateValid(day));
+
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                            dateOfBirthEdit = LocalDate.parse(day, formatter);
+                            LocalDate nowSub18 = LocalDate.now().minusYears(18);
+
+                            if (dateOfBirthEdit.compareTo(nowSub18) < 0){
                                 break;
-                            } catch (Exception e) {
-                                System.out.println("The date of birth entered is not in the correct format, please re-enter");
+                            }else {
+                                System.out.println("You are underage");
                             }
                         }
                         String genderEdit;
@@ -217,7 +228,7 @@ public class CustomerService implements IService, ICustomerService {
                     System.out.println("Invalid customer CODE format. Please re-enter");
                 }
             } catch (CodeException e) {
-                System.out.println("Invalid syntax. Please try again");
+                System.out.println(e.getMessage());
             }
         }
         String name;
@@ -234,23 +245,34 @@ public class CustomerService implements IService, ICustomerService {
                 System.out.println("Invalid syntax. Please try again");
             }
         }
-        LocalDate localDate = LocalDate.now();
+
+        String day;
         LocalDate dateOfBirth;
         while (true){
-            try {
+            do {
                 System.out.println("Enter date of birth (dd/MM/yyyy): ");
-                String day = scanner.nextLine();
-                dateOfBirth = LocalDate.parse(day, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                day =scanner.nextLine();
+                if (!isDateValid(day)){
+                    System.out.println("The date of birth entered is not in the correct format, please re-enter");
+                }
+            }while (!isDateValid(day));
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dateOfBirth = LocalDate.parse(day, formatter);
+            LocalDate nowSub18 = LocalDate.now().minusYears(18);
+
+            if (dateOfBirth.compareTo(nowSub18) < 0){
                 break;
-            } catch (Exception e) {
-                System.out.println("The date of birth entered is not in the correct format, please re-enter");
+            }else {
+                System.out.println("You are underage");
             }
         }
+
         String gender;
         abc100:
         while (true){
             try {
-                System.out.println("Enter  gender:\n1.Male\n2.Female\n3.Other");
+                System.out.println("Enter gender:\n1.Male\n2.Female\n3.Other");
                 int tempGender = Integer.parseInt(scanner.nextLine());
                 switch (tempGender){
                     case 1:
@@ -408,5 +430,17 @@ public class CustomerService implements IService, ICustomerService {
 
     private String getInfo(Customer customer){
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",customer.getCode(),customer.getName(),customer.getDateOfBirth(),customer.getGender(),customer.getIdentityNumber(),customer.getPhoneNumber(),customer.getEmail(),customer.getGuestType(),customer.getAddress());
+    }
+
+
+    public static boolean isDateValid(String target){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        simpleDateFormat.setLenient(false);
+        try {
+            simpleDateFormat.parse(target);
+            return true;
+        } catch (ParseException e) {
+        }
+        return false;
     }
 }

@@ -4,6 +4,7 @@ import furama_resort_manager.model.person.Customer;
 import furama_resort_manager.service.ICustomerService;
 import furama_resort_manager.service.IService;
 import furama_resort_manager.utils.exception.CodeException;
+import furama_resort_manager.utils.exception.CustomerException;
 import furama_resort_manager.utils.regex.Regex;
 
 import java.io.*;
@@ -47,14 +48,14 @@ public class CustomerService implements IService, ICustomerService {
                             try {
                                 System.out.println("Enter new name (Ex: Nguyễn văn A): ");
                                 nameEdit = scanner.nextLine();
-                                if (Regex.checkName(nameEdit)){
-                                    customerList.get(i).setName(nameEdit);
-                                    break;
-                                }else {
-                                    System.out.println("The input name is not in the correct format. Please re-enter");
+                                if (!Regex.checkName(nameEdit)){
+                                    throw new CustomerException("The input name is not in the correct format. Please re-enter");
+
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Invalid syntax. Please try again");
+                                customerList.get(i).setName(nameEdit);
+                                break;
+                            } catch (CustomerException e) {
+                                System.out.println(e.getMessage());
                             }
                         }
                         String day;
@@ -107,14 +108,13 @@ public class CustomerService implements IService, ICustomerService {
                             try {
                                 System.out.println("Enter a new identity card number (Ex: 384709875847): ");
                                 idNumberEdit = scanner.nextLine();
-                                if (Regex.checkIdentityNumber(idNumberEdit)){
-                                    customerList.get(i).setIdentityNumber(idNumberEdit);
-                                    break;
-                                }else {
-                                    System.out.println("Invalid ID card number. Please re-enter");
+                                if (!Regex.checkIdentityNumber(idNumberEdit)){
+                                    throw new CustomerException("Invalid ID card number. Please re-enter");
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Invalid syntax. Please try again");
+                                customerList.get(i).setIdentityNumber(idNumberEdit);
+                                break;
+                            } catch (CustomerException e) {
+                                System.out.println(e.getMessage());
                             }
                         }
                         String phoneNumberEdit;
@@ -122,14 +122,13 @@ public class CustomerService implements IService, ICustomerService {
                             try {
                                 System.out.println("Enter new phone number (Ex: +84901961xxx): ");
                                 phoneNumberEdit = scanner.nextLine();
-                                if (Regex.checkPhoneNumber(phoneNumberEdit)){
-                                    customerList.get(i).setPhoneNumber(phoneNumberEdit);
-                                    break;
-                                }else {
-                                    System.out.println("invalid phone number");
+                                if (!Regex.checkPhoneNumber(phoneNumberEdit)){
+                                    throw new CustomerException("Invalid phone number");
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Invalid syntax. Please try again");
+                                customerList.get(i).setPhoneNumber(phoneNumberEdit);
+                                break;
+                            } catch (CustomerException e) {
+                                System.out.println(e.getMessage());
                             }
                         }
                         String emailEdit;
@@ -137,14 +136,13 @@ public class CustomerService implements IService, ICustomerService {
                             try {
                                 System.out.println("Enter new email (Ex: abc@gmail.com): ");
                                 emailEdit = scanner.nextLine();
-                                if (Regex.checkEmail(emailEdit)){
-                                    customerList.get(i).setEmail(emailEdit);
-                                    break;
-                                }else {
-                                    System.out.println("Invalid email. Please re-enter");
+                                if (!Regex.checkEmail(emailEdit)){
+                                    throw new CustomerException("Invalid email. Please re-enter");
                                 }
-                            } catch (Exception e) {
-                                System.out.println("Invalid syntax. Please try again");
+                                customerList.get(i).setEmail(emailEdit);
+                                break;
+                            } catch (CustomerException e) {
+                                System.out.println(e.getMessage());
                             }
                         }
                         String guestTypeEdit;
@@ -236,13 +234,12 @@ public class CustomerService implements IService, ICustomerService {
             try {
                 System.out.println("Enter name (Nguyễn Văn A): ");
                 name =scanner.nextLine();
-                if (Regex.checkName(name)){
-                    break;
-                }else {
-                    System.out.println("The input name is not in the correct format. Please re-enter");
+                if (!Regex.checkName(name)){
+                    throw new CustomerException("The input name is not in the correct format. Please re-enter");
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                break;
+            } catch (CustomerException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -298,13 +295,12 @@ public class CustomerService implements IService, ICustomerService {
             try {
                 System.out.println("Enter identity card number (Ex: 384709875847): ");
                 identityNumber = scanner.nextLine();
-                if (Regex.checkIdentityNumber(identityNumber)){
-                    break;
-                }else {
-                    System.out.println("Invalid ID card number. Please re-enter");
+                if (!Regex.checkIdentityNumber(identityNumber)){
+                    throw new CustomerException("Invalid ID card number. Please re-enter");
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                break;
+            } catch (CustomerException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -313,13 +309,12 @@ public class CustomerService implements IService, ICustomerService {
             try {
                 System.out.println("Enter phone number(Ex: +84901961xxx): ");
                 phoneNumber = scanner.nextLine();
-                if (Regex.checkPhoneNumber(phoneNumber)){
-                    break;
-                }else {
-                    System.out.println("invalid phone number");
+                if (!Regex.checkPhoneNumber(phoneNumber)){
+                    throw new CustomerException("Invalid phone number");
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                break;
+            } catch (CustomerException e) {
+                System.out.println(e.getMessage());
             }
         }
 
@@ -328,13 +323,12 @@ public class CustomerService implements IService, ICustomerService {
             try {
                 System.out.println("Enter email (Ex: abc@gmail.com): ");
                 email = scanner.nextLine();
-                if (Regex.checkEmail(email)){
-                    break;
-                }else {
-                    System.out.println("Invalid email. Please re-enter");
+                if (!Regex.checkEmail(email)){
+                    throw new CustomerException("Invalid email. Please re-enter");
                 }
-            } catch (Exception e) {
-                System.out.println("Invalid syntax. Please try again");
+                break;
+            } catch (CustomerException e) {
+                System.out.println(e.getMessage());
             }
         }
         String guestType;

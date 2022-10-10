@@ -4,6 +4,7 @@ import furama_resort_manager.model.person.Employee;
 import furama_resort_manager.service.IEmployeeService;
 import furama_resort_manager.service.IService;
 import furama_resort_manager.utils.exception.CodeException;
+import furama_resort_manager.utils.exception.EmployeeException;
 import furama_resort_manager.utils.regex.Regex;
 
 import java.io.*;
@@ -50,11 +51,11 @@ public class EmployeeService implements IService, IEmployeeService {
                             System.out.println("Enter new name (Ex: Nguyễn văn A): ");
                             nameEdit = scanner.nextLine();
                             if (!Regex.checkName(nameEdit)){
-                                throw new Exception("The input name is not in the correct format. Please re-enter");
+                                throw new EmployeeException("The input name is not in the correct format. Please re-enter");
                             }
                             employeeList.get(i).setName(nameEdit);
                             break;
-                        } catch (Exception e) {
+                        } catch (EmployeeException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -113,12 +114,12 @@ public class EmployeeService implements IService, IEmployeeService {
                             System.out.println("Enter a new identity card number (Ex: 384709875847): ");
                             idNumberEdit = scanner.nextLine();
                             if (!Regex.checkIdentityNumber(idNumberEdit)) {
-                                throw new Exception("Invalid ID card number. Please re-enter");
+                                throw new EmployeeException("Invalid ID card number. Please re-enter");
 
                             }
                             employeeList.get(i).setIdentityNumber(idNumberEdit);
                             break;
-                        } catch (Exception e) {
+                        } catch (EmployeeException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -128,12 +129,12 @@ public class EmployeeService implements IService, IEmployeeService {
                             System.out.println("Enter new phone number (Ex: +84901961xxx): ");
                             phoneNumberEdit = scanner.nextLine();
                             if (!Regex.checkPhoneNumber(phoneNumberEdit)) {
-                                throw new Exception("Invalid phone number");
+                                throw new EmployeeException("Invalid phone number");
 
                             }
                             employeeList.get(i).setPhoneNumber(phoneNumberEdit);
                             break;
-                        } catch (Exception e) {
+                        } catch (EmployeeException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -143,11 +144,11 @@ public class EmployeeService implements IService, IEmployeeService {
                             System.out.println("Enter new email (Ex: abc@gmail.com): ");
                             emailEdit = scanner.nextLine();
                             if (!Regex.checkEmail(emailEdit)) {
-                                throw new Exception("Invalid email. Please re-enter");
+                                throw new EmployeeException("Invalid email. Please re-enter");
                             }
                             employeeList.get(i).setEmail(emailEdit);
                             break;
-                        } catch (Exception e) {
+                        } catch (EmployeeException e) {
                             System.out.println(e.getMessage());
                         }
                     }
@@ -225,12 +226,12 @@ public class EmployeeService implements IService, IEmployeeService {
                             System.out.println("Enter new employee salary (Ex: 5000000VND): ");
                             salaryEdit = scanner.nextLine();
                             if (!Regex.checkSalary(salaryEdit)) {
-                                throw new Exception("The format is not correct. Please re-enter");
+                                throw new EmployeeException("The format is not correct. Please re-enter");
 
                             }
                             employeeList.get(i).setSalary(salaryEdit);
                             break;
-                        } catch (Exception e) {
+                        } catch (EmployeeException e) {
                             System.out.println(e.getMessage());
                         }
                     }
